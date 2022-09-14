@@ -1,15 +1,15 @@
 <template>
-  <div class="about">
-   uwqdw
+  <div>
+   about
   </div>
 </template>
 <script>
 export default {
-  data(){},
+  data(){
+    return{}
+  },
   methods:{
-    created(){
-      console.log(this.$route,88888)
-    }
+   
 
   }
   

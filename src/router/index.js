@@ -6,24 +6,25 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/info',
     name: 'Home',
     component: Home
   },
   {
-    path: '/about/:id',
-    name: 'About',
+    path: '/manage',
+    name: 'manage',
     component: () => import('../views/About.vue')
   },
   {
-    path: '/user',
-    name: 'user',
+    path: '/position',
+    name: 'position',
     component: () => import('../views/user/index.vue'),
-    chidren:[{
-      path: 'adasd',
-      name: 'About',
-      component: () => import('../views/About.vue')
-    }]
+    chidren: []
+  },
+  {
+    path: '/userinfo',
+    name: 'userinfo',
+    component: () => import('../views/userinfo.vue')
   }
 ]
 
@@ -32,5 +33,10 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+const VueRouterPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(to) {
+  return VueRouterPush.call(this, to).catch(err => err)
+}
 
 export default router

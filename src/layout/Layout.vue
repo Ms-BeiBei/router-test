@@ -31,4 +31,7 @@ export default {
 .ant-layout-content {
   height: 100%;
 }
+::v-deep .ant-layout-header{
+  background-color: #6a101021;
+}
 </style>

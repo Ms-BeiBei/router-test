@@ -1,26 +1,32 @@
 export const menus = [
     {
-        key: '1',
+        key: 'info',
         type: 'mail',
-        name: 'Navigation One',
+        name: '首页',
         children: [{
-            key: '2',
+            key: 'manage',
             type: 'aliwangwang',
-            name: 'Navigation two',
-            children:[]
+            name: '系统管理',
+            children: []
         }, {
-            key: '3',
+            key: 'position',
             type: 'bulb',
-            name: 'Navigation three',
-            children:[]
+            name: '地理位置',
+            children: []
         }]
 
-    }, 
+    },
     {
         key: '/user',
         type: 'dashboard',
-        name: 'user',
-        children:[]
+        name: '用户',
+        children: [{
+            key: 'userinfo',
+            type: 'dashboard',
+            name: '用户中心',
+            children: []
+
+        }]
     }
 
 
