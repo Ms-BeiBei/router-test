@@ -17,7 +17,7 @@ export const menus = [
 
     },
     {
-        key: '/user',
+        key: 'user',
         type: 'dashboard',
         name: '用户',
         children: [{
@@ -25,7 +25,6 @@ export const menus = [
             type: 'dashboard',
             name: '用户中心',
             children: []
-
         }]
     }
 

@@ -28,7 +28,7 @@ export default {
   methods: {
     onSelect({key}){
       this.$router.push({
-        path: key
+        name: key
       })
     }
 
