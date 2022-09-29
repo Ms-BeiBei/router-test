@@ -21,15 +21,18 @@ export default new Vuex.Store({
     }
   },
   mutations: {   //  是同步修改state中的数据
-    add(state){
-      state.test += 1
+    ADD(state,payload){ //payload触发add时传入的负载，login.vue中触发的
+      console.log(payload,999)
+      state.test += 10
     },
-    test(state){
+    TEST(state){
       state.test += 4
     }
   },
-  
-  actions: {
+  actions: {  //规范是  actions  用来 操作 mutations
+    add (context) {
+      context.commit('ADD')
+    }
   },
   modules: {
   }

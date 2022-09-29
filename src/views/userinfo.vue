@@ -1,10 +1,8 @@
 <template>
   <div>
-    用户中心--- {{ $store.state.test }}---
-    ---{{ count1 }}-
-    -{{ count2 }}--
-    -{{count3}}---
-    处理完的长度是---{{ doneTodosCount }}
+    用户中心--- {{ $store.state.test }}--- ---{{ count1 }}- -{{ count2 }}-- -{{
+      count3
+    }}--- 处理完的长度是---{{ doneTodosCount }}
 
     <div @click="add1">add</div>
     <div @click="test2">test2</div>
@@ -12,7 +10,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -29,16 +27,20 @@ export default {
   }),
 
   created() {
-    console.log(this.$store.getters.doneTodos,9999);
+    console.log(this.$store.getters.doneTodos, 9999);
+
   },
   methods: {
     // ...mapMutations(["add", "test"]),//也可以写成数组
     ...mapMutations({
       //mapMutations 接受一个对象  key  是将要 绑定的  方法名字， value  是vuex 中 mutations 的方法
-      add1: "add",
-      test2: "test",
-      test: "test",
+      add1: "ADD",
+      test2: "TEST",
+      test: "TEST",
     }),
+    ...mapActions([
+      "add", // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
+    ]),
   },
 };
 </script>
