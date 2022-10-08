@@ -14,6 +14,7 @@
   </a-layout>
 </template>
 <script>
+import { removeToken } from '../utils/index'
 import Menus from "./Menus.vue";
 export default {
   components: {
@@ -21,7 +22,7 @@ export default {
   },
   methods: {
     logout() {
-      localStorage.removeItem("token");
+      removeToken("token");
       this.$router.push("/login");
     },
   },

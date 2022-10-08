@@ -1,38 +1,51 @@
 <template>
   <div class="container">
-    <a-form layout="horizontal" :form="form" @submit="handleSubmit"  class="login">
+    <div class="header">
+      <img src="../assets/bac.png" />
+      <span class="title">{{ "Antd admin" }}</span>
+    </div>
+    <a-form
+      layout="horizontal"
+      :form="form"
+      @submit="handleSubmit"
+      class="login"
+    >
       <a-form-item>
         <a-input
           v-decorator="[
             'userName',
-            {
-              rules: [{ required: true, message: '请输入你的账号!' }],
-            },
+            { rules: [{ required: true, message: '请输入账号!' }] },
           ]"
           placeholder="账号"
         >
-          <a-icon
-            slot="prefix"
-            type="user"
-            style="color: rgba(0, 0, 0, 0.25)"
-          />
+          <a-icon slot="prefix" type="user" style="color: (0, 0, 0, 0.85)" />
         </a-input>
       </a-form-item>
       <a-form-item>
         <a-input
           v-decorator="[
             'password',
-            {
-              rules: [{ required: true, message: '请输入密码' }],
-            },
+            { rules: [{ required: true, message: '请输入密码' }] },
           ]"
           type="password"
           placeholder="密码"
         >
-          <a-icon
-            slot="prefix"
-            type="lock"
-            style="color: rgba(0, 0, 0, 0.25)"
+          <a-icon slot="prefix" type="lock" style="color: (0, 0, 0, 0.85)" />
+        </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-input
+          v-decorator="[
+            'password',
+            { rules: [{ required: true, message: '请输入验证码' }] },
+          ]"
+          placeholder="验证码"
+        >
+          <a-icon slot="prefix" type="safety" style="color: (0, 0, 0, 0.85)" />
+          <img
+            slot="suffix"
+            src="../assets/logo.png"
+            style="cursor: pointer; width: 15px; height: 15px"
           />
         </a-input>
       </a-form-item>
@@ -43,6 +56,7 @@
         <a-button
           html-type="submit"
           :loading="loading"
+          type="primary"
           style="width: 100%; margin-top: 24px"
           size="large"
         >
@@ -56,6 +70,7 @@
 import axios from "@/http/axios";
 import { Encrypt, setToken } from "@/utils";
 export default {
+  name: "Login",
   data() {
     return {
       loading: false,
@@ -64,7 +79,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.form.validateFields();
+      // this.form.validateFields();
     });
   },
   methods: {
@@ -93,40 +108,55 @@ export default {
   },
 };
 </script>
-<style lang='less'>
+<style lang='less' scoped>
+.header {
+  height: 100px;
+  line-height: 190px;
+  text-align: center;
+  img {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  .title {
+    font-size: 33px;
+    color: rgba(0, 0, 0, 0.85);
+    font-family: "Myriad Pro", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    position: relative;
+    text-align: center;
+  }
+}
 .container {
-  background: linear-gradient(
-    to right,
-    rgb(235, 214, 225),
-    rgb(201, 157, 191),
-    rgb(247, 210, 239)
-  );
+  background-image: url("../assets/background.svg");
+  background-size: 100% 100%;
+  background-attachment: fixed;
   padding-top: 50px;
   height: 100%;
-  .login {
-    top: 60px;
-    position: relative;
-    width: 368px;
-    margin: 0 auto;
-    @media screen and (max-width: 576px) {
-      width: 95%;
+}
+.login {
+  top: 60px;
+  position: relative;
+  width: 368px;
+  margin: 0 auto;
+  @media screen and (max-width: 576px) {
+    width: 95%;
+  }
+  @media screen and (max-width: 320px) {
+    .captcha-button {
+      font-size: 14px;
     }
-    @media screen and (max-width: 320px) {
-      .captcha-button {
-        font-size: 14px;
-      }
-    }
-    .icon {
-      font-size: 24px;
-      color: #99d43a;
-      margin-left: 16px;
-      vertical-align: middle;
-      cursor: pointer;
-      transition: color 0.3s;
-
-      &:hover {
-        color: #e4e7dd;
-      }
+  }
+  .icon {
+    font-size: 24px;
+    color: #5a54a7;
+    margin-left: 16px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: color 0.3s;
+    &:hover {
+      color: #e4e7dd;
     }
   }
 }
