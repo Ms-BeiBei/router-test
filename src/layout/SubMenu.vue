@@ -1,15 +1,15 @@
 <template>
-  <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
+  <a-sub-menu :key="menuInfo.name" v-bind="$props" v-on="$listeners">
 
-    <template v-slot:title>{{ menuInfo.name }}</template>
+    <template v-slot:title>{{ menuInfo.meta.title }}</template>
     <template v-for="item in menuInfo.children">
-      <a-menu-item :key="item.key"
+      <a-menu-item :key="item.name"
                    v-if="!item.children.length">
 
-        {{ item.name }}
+        {{ item.meta.title }}
       </a-menu-item>
       <SubMenu :menu-info="item"
-               :key="item.key"
+               :key="item.name"
                v-else />
     </template>
   </a-sub-menu>

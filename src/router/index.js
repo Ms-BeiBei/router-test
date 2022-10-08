@@ -4,60 +4,64 @@ import Layout from '@/layout/index.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
+export const accestRoutes = [
   {
+    key: 'login',
     path: '/login',
     name: 'login',
+    type: 'dashboard',
     component: () => import('@/views/login.vue'),
   },
+]
+
+export const routes = [
   {
     path: '/',
     name: 'Layout',
     component: Layout,
-    redircet: '/manage',
+    redircet: '/about',
+    meta: {
+      title: '首页'
+    },
     children: [
       {
-        path: 'manage',
-        name: 'manage',
-        component: () => import('@/views/About.vue')
+        path: 'about',
+        name: 'about',
+        meta: {
+          title: '关于'
+        },
+        component: () => import('@/views/About.vue'),
+        children:[]
       },
       {
-        path: 'position',
-        name: 'position',
+        path: 'user',
+        name: 'user',
         component: () => import('@/views/user/index.vue'),
+        meta: {
+          title: '用户中心'
+        },
+        children:[]
       },
-      {
-        path: 'userinfo',
-        name: 'userinfo',
-        component: () => import('@/views/userinfo.vue')
-      }]
+    ]
   },
+  // {
+  
+  //   path: 'userinfo',
+  //   name: 'userinfo',
+  //   component: () => import('@/views/userinfo.vue'),
+  //   meta: {
+  //     title: '中心'
+  //   },
+  //   children: []
+  // }
 ]
 
 const router = new VueRouter({
   base: process.env.BASE_URL,
-  routes
+  routes: accestRoutes.concat(routes)
 })
 
 
-router.beforeEach((to, from, next) => {
-  console.log(to,1111)
-
-  if (localStorage.getItem('token')) {//tk已经存在，为已经登陆的状态
-    if (to.path === '/login') {
-      next('/')
-    } else {
-      next() //否则进入目标路由
-    }
-  } else {
-    if (to.path === '/login') { //tk不存在的时候，跳出死循环
-      next()//跳出死循环
-    }else{
-      next('/login')
-    }
-    // next('/login')//如果这样写，会一直执行这一句，进入死循环。
-  }
-})
 
 
 export default router
