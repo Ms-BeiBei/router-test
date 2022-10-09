@@ -36,9 +36,9 @@ export const routes = [
       {
         path: 'user',
         name: 'user',
-        component: () => import('@/views/user/index.vue'),
+        component: () => import('@/views/ueserole/index.vue'),
         meta: {
-          title: '用户中心'
+          title: '角色中心'
         },
         children:[]
       },

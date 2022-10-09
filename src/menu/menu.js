@@ -19,11 +19,11 @@ export const menus = [
     {
         key: 'user',
         type: 'dashboard',
-        name: '用户',
+        name: '角色',
         children: [{
             key: 'userinfo',
             type: 'dashboard',
-            name: '用户中心',
+            name: '角色',
             children: []
         }]
     }

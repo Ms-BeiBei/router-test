@@ -13,7 +13,7 @@
       <a-form-item>
         <a-input
           v-decorator="[
-            'userName',
+            'username',
             { rules: [{ required: true, message: '请输入账号!' }] },
           ]"
           placeholder="账号"
@@ -36,16 +36,17 @@
       <a-form-item>
         <a-input
           v-decorator="[
-            'password',
-            { rules: [{ required: true, message: '请输入验证码' }] },
+            'verifyCode',
+            { rules: [{ required: true, len: 4, message: '请输入验证码' }] },
           ]"
           placeholder="验证码"
         >
           <a-icon slot="prefix" type="safety" style="color: (0, 0, 0, 0.85)" />
           <img
             slot="suffix"
-            src="../assets/logo.png"
-            style="cursor: pointer; width: 15px; height: 15px"
+            :src="base64"
+            style="cursor: pointer; width: 50px; height: 50px"
+            @click="getVerifyCode"
           />
         </a-input>
       </a-form-item>
@@ -69,11 +70,14 @@
 <script>
 import axios from "@/http/axios";
 import { Encrypt, setToken } from "@/utils";
+import { message } from "ant-design-vue";
 export default {
   name: "Login",
   data() {
     return {
       loading: false,
+      base64: "",
+      captchaId: "",
       form: this.$form.createForm(this, { name: "horizontal_login" }),
     };
   },
@@ -82,27 +86,47 @@ export default {
       // this.form.validateFields();
     });
   },
+  created() {
+    this.getVerifyCode();
+  },
   methods: {
     async handleSubmit() {
-      this.loading = true;
+       setToken('hjofhewqiHDNBBBBBBBBBBBBBB');
+         this.$router.push("/");
+      // try {
+      //   this.loading = true;
+      //   const data = {
+      //     captchaId: this.captchaId,
+      //     ...this.form.getFieldsValue(),
+      //   };
+      //   const { data: response } = await axios({
+      //     method: "post",
+      //     url: "/admin/login",
+      //     data,
+      //   });
+      //   if (response.code !== 200) {
+      //     throw response.message;
+      //   }
+      //   // setToken(response.data.token);
+      //   this.$router.push("/");
+      // } catch (error) {
+      //   this.$message.error(error);
+      // } finally {
+      //   this.loading = false;
+      // }
+    },
+    async getVerifyCode() {
       try {
         const response = await axios({
           method: "get",
-          url: "/mock/e970a2cd0c4b6c2a4caa379ab878e33a/api-v1/login",
+          url: "/admin/captcha/img",
         });
         if (response) {
-          const user = {
-            id: "1",
-            name: "beibei",
-            sex: "0",
-          };
-          const data = Encrypt(user);
-          setToken(data);
-          this.$router.push("/");
+          this.base64 = response.data.data.img;
+          this.captchaId = response.data.data.id;
         }
-      } catch (error) {
+      } catch (err) {
       } finally {
-        this.loading = false;
       }
     },
   },
