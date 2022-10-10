@@ -173,11 +173,11 @@ export default {
     display: flex;
     padding: 10px;
     width: 100%;
-   
+    height: 400px;
     &-left {
       width: 50%;
       margin: 10px;
-      // height: 350px;
+      height: 350px;
       width: 42%;
       border: 1px solid rgb(219, 214, 214);
       overflow: auto;
@@ -185,12 +185,11 @@ export default {
     &-right {
       flex: 1;
       margin: 10px;
-      // height: 350px;
+      height: 350px;
       width: 49%;
       border: 1px solid rgb(211, 207, 207);
       overflow: auto;
     }
   }
 }
-
 </style>
