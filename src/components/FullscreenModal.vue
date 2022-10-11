@@ -4,6 +4,8 @@
     :closable="true"
     v-on="$listeners"
     v-bind="$attrs"
+    cancelText='取消'
+    okText='确定'
     :wrapClassName="fullscreen ? 'user-modal--fullscreen' : ''"
   >
     <template v-slot:closeIcon>
@@ -12,6 +14,7 @@
         @click.stop="toggleFullscreen"
       />
     </template>
+    <slot name='content'></slot>
   </a-modal>
 </template>
 

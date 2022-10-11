@@ -33,4 +33,48 @@ export function setToken(value) {
     const expires = new Date(new Date() * 1 + TOKEN_EXPIRED)
     return Cookies.set(TOKEN_KEY, value, { expires: expires })
 }
+export function transTree(list) {
+    const res = []
+    const map = list.reduce((res, v) => (res[v.id] = v, v.children = [], res), {})
+    for (const item of list) {
+        if (item.parentId === 0) {
+            res.push(item)
+            continue
+        }
+        if (item.parentId in map) {
+            const parent = map[item.parentId]
+            parent.children = parent.children || []
+            parent.children.push(item)
+        }
+    }
+    return res
+}
+export function arrToTree(arr, parentId = 0) {
+    // return arr
+    //   .filter((item) =>
+    //     parentId === undefined
+    //       ? item.parentBcbCode === ""
+    //       : item.parentBcbCode === parentId
+    //   )
+    //   .map((item) => {
+    //     item.children = this.arrToTree(arr, item.bcbCode);
+    //     return item;
+    //   });
+    const getChildren = (pid) => {
+        let childs = []
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].pId === pid) {
+                const children = getChildren(arr[i].id)
+                if (children.length) {
+                    arr[i].children = getChildren(arr[i].id)
 
+                }
+                childs.push(arr[i])
+            }
+
+        }
+        return childs
+    }
+
+    return getChildren(parentId)
+}
