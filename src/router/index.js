@@ -34,11 +34,20 @@ export const routes = [
         children:[]
       },
       {
-        path: 'user',
-        name: 'user',
-        component: () => import('@/views/ueserole/index.vue'),
+        path: 'role',
+        name: 'role',
+        component: () => import('@/views/role/index.vue'),
         meta: {
           title: '角色中心'
+        },
+        children:[]
+      },
+      {
+        path: 'user',
+        name: 'user',
+        component: () => import('@/views/user/index.vue'),
+        meta: {
+          title: '用户中心'
         },
         children:[]
       },

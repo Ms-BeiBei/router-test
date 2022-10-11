@@ -75,7 +75,7 @@
       :title="title"
       :visible="visible"
       :footer="null"
-      width="1200px"
+       width="1200px"
       :closable="true"
       :wrapClassName="fullscreen ? 'user-modal--fullscreen' : ''"
     >
@@ -164,7 +164,7 @@ export default {
   },
   created() {},
   computed: {
-    title() {//title computed 是定义 数据,watch 是监听数据
+    title() {//title computed 是定义 数据,watch 是监听data或者props中的数据，监听时不加this
       if (this.type == "edit") {
         return "编辑";
       }
@@ -243,3 +243,4 @@ export default {
   }
 }
 </style>
+

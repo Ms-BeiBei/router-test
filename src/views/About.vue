@@ -1,24 +1,39 @@
 <template>
   <div>
-   <MapContainer />
+    <FullscreenModal
+      :visible.sync="visible"
+      title="1111"
+      @ok='OK'
+    />
+
+    <a-button @click="open">11111</a-button>
+  
   </div>
 </template>
 <script>
-import MapContainer from '../components/MapContainer/MapContainer.vue'
+import FullscreenModal from "@/components/FullscreenModal";
 export default {
-  components:{
-    MapContainer
+  components: {
+    FullscreenModal,
   },
-  data(){
-    return{}
+  data() {
+    return {
+      visible: false,
+    };
   },
-  methods:{
+  created(){
    
-
-  }
-  
-}
+  },
+  methods: {
+    open() {
+      this.visible = true;
+    },
+    OK() {
+      this.visible = false;
+    },
+   
+  },
+};
 </script>
 <style scoped>
-
 </style>
