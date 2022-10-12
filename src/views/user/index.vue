@@ -31,7 +31,7 @@ export default {
   background-color: #fff;
   margin: 10px 10px 0 10px;
   &-left {
-    width: 25%;
+    width: 15%;
     padding: 10px;
   }
   &-right {

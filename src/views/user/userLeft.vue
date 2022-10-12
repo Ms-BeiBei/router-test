@@ -1,9 +1,22 @@
 <template>
   <div class="userLeft">
-    <div class="userLeft-title">组织架构</div>
+    <div class="userLeft-title">
+      组织架构
+      <a-tree
+        checkable
+        :tree-data="treeData"
+        :default-expanded-keys="['0-0-0', '0-0-1']"
+        :default-selected-keys="['0-0-0', '0-0-1']"
+        :default-checked-keys="['0-0-0', '0-0-1']"
+        :replace-fields="replaceFields"
+        @select="onSelect"
+        @check="onCheck"
+      />
+    </div>
     <div class="userLeft-right">
       <a-icon type="plus" @click="handleAdd" style="margin-right: 10px" />
       <a-icon type="redo" @click="handleRefrsh" />
+      <a-divider type='vertical' style="height:100%;color:red"></a-divider>
     </div>
     <FullscreenModal
       title="新增"
@@ -109,6 +122,7 @@ export default {
   &-title {
   }
   &-right {
+    height: 100%;
   }
 }
 </style>

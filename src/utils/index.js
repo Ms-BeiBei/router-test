@@ -60,6 +60,16 @@ export function arrToTree(arr, parentId = 0) {
     //     item.children = this.arrToTree(arr, item.bcbCode);
     //     return item;
     //   });
+    [
+        { id: 1, name: "部门A", pId: 0 },
+        { id: 2, name: "部门B", pId: 0 },
+        { id: 3, name: "部门C", pId: 1 },
+        { id: 4, name: "部门D", pId: 1 },
+        { id: 5, name: "部门E", pId: 2 },
+        { id: 6, name: "部门F", pId: 3 },
+        { id: 7, name: "部门G", pId: 2 },
+        { id: 8, name: "部门H", pId: 4 },
+    ]
     const getChildren = (pid) => {
         let childs = []
         for (let i = 0; i < arr.length; i++) {
@@ -67,14 +77,11 @@ export function arrToTree(arr, parentId = 0) {
                 const children = getChildren(arr[i].id)
                 if (children.length) {
                     arr[i].children = getChildren(arr[i].id)
-
                 }
                 childs.push(arr[i])
             }
-
         }
         return childs
     }
-
     return getChildren(parentId)
 }
