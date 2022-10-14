@@ -16,8 +16,8 @@
     <div class="userLeft-right">
       <a-icon type="plus" @click="handleAdd" style="margin-right: 10px" />
       <a-icon type="redo" @click="handleRefrsh" />
-      <a-divider type='vertical' style="height:100%;color:red"></a-divider>
     </div>
+    <div><a-divider type='vertical' style="height:100%"></a-divider></div>
     <FullscreenModal
       title="新增"
       :visible.sync="visible"
@@ -118,11 +118,15 @@ export default {
 <style scoped lang='less'>
 .userLeft {
   display: flex;
+  height: 100%;
   justify-content: space-between;
   &-title {
   }
   &-right {
     height: 100%;
+    &-divider{
+      height: 100%;
+    }
   }
 }
 </style>
