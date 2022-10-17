@@ -65,7 +65,7 @@
     <div class="UserRight-container">
       <div class="UserRight-container-left rui-theader-title">用户管理</div>
       <div class="UserRight-container-right">
-        <el-button type="primary" size="mini">
+        <el-button type="primary" size="mini" @click="handleAdd">
           <i class="el-icon-plus"></i>增加</el-button
         >
         <el-button
@@ -73,8 +73,7 @@
           size="mini"
           :disabled="disabled"
           @click="handleTransForm"
-        >
-          转移</el-button
+          >转移</el-button
         >
         <el-button
           type="info"
@@ -120,9 +119,9 @@
       </el-table-column>
       <el-table-column prop="operate" label="操作" width="150" fixed="right">
         <template slot-scope>
-          <a style="margin-right: 5px">增加</a>
-          <a style="margin-right: 5px">改密</a>
-          <a>删除</a>
+          <a style="margin-right: 5px" @click='handleEdit'>编辑</a>
+          <a style="margin-right: 5px" @click='handleChangePassword'>改密</a>
+          <a @click='handleDelete'>删除</a>
         </template>
       </el-table-column>
     </el-table>
@@ -130,21 +129,38 @@
       :visible.sync="visible"
       :title="title"
       width="1000px"
-      @ok="handleTrans"
+      @ok="handleCancel"
       :defaultFull="false"
     >
-      <template #content v-if="typeTitle === 'A'">
-        <el-form :model="transferForm" size="mini">
-          <el-form-item label="转移至">
-            <el-select v-model="transfer"></el-select>
-          </el-form-item>
-        </el-form>
+      <template #content>
+        <div v-if="typeTitle === 'A'">
+          <el-form :model="transferForm" size="mini">
+            <el-form-item label="转移至">
+              <el-select v-model="transfer"></el-select>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div v-if="typeTitle === 'D'">
+          <el-form :model="changePasswordForm" size="mini">
+            <el-form-item label="新密码">
+              <el-input v-model="changePassword"></el-input>
+            </el-form-item>
+          </el-form>
+        </div>
+        <template v-if="typeTitle === 'B'">
+          <UserAdd></UserAdd>
+        </template>
+        <template v-if="typeTitle === 'C'">
+          <UserEdit></UserEdit>
+        </template>
       </template>
     </FullscreenModal>
   </div>
 </template>
 <script>
 import FullscreenModal from "@/components/FullscreenModal";
+import UserEdit from './userEdit'
+import UserAdd from "./userAdd";
 const tableData = [
   {
     date: "2016-05-01",
@@ -162,6 +178,8 @@ export default {
   name: "UserRight",
   components: {
     FullscreenModal,
+    UserAdd,
+    UserEdit
   },
   data() {
     return {
@@ -173,11 +191,12 @@ export default {
       visible: false,
       multipleSelection: [],
       typeTitle: undefined,
+      changePassword:'',
+      changePasswordForm:{},
     };
   },
   created() {
-    console.log(21323232);
-    console.log(this.typeTitle, 999);
+    
   },
   computed: {
     disabled() {
@@ -186,6 +205,15 @@ export default {
     title() {
       if (this.typeTitle == "A") {
         return "转移部门";
+      }
+      if (this.typeTitle == "B") {
+        return "新增";
+      }
+      if (this.typeTitle == "C") {
+        return "编辑";
+      }
+      if (this.typeTitle == "D") {
+        return "修改密码";
       }
     },
   },
@@ -197,7 +225,19 @@ export default {
       this.multipleSelection = val;
       console.log(this.multipleSelection, "this.multipleSelection");
     },
-    handleTrans() {
+    handleEdit(){
+      this.typeTitle = "C";
+      this.visible = true;
+    },
+    handleChangePassword(){
+      this.typeTitle = "D";
+      this.visible = true;
+    },
+    handleCancel() {
+      this.visible = false;
+    },
+    handleAdd() {
+      this.typeTitle = "B";
       this.visible = true;
     },
     handleTransForm() {
@@ -205,8 +245,10 @@ export default {
       this.visible = true;
     },
     handleDelete() {
-
-        
+      this.$alert("确定要删除所选的用户吗?", "", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+      });
     },
   },
 };

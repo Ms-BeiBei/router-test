@@ -51,6 +51,15 @@ export const routes = [
         },
         children:[]
       },
+      {
+        path: 'menu',
+        name: 'menu',
+        component: () => import('@/views/menu/index.vue'),
+        meta: {
+          title: '菜单管理'
+        },
+        children:[]
+      },
     ]
   },
   // {
