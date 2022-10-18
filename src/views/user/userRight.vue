@@ -173,7 +173,6 @@ const tableData = [
     address: "上海市普陀区金沙江路 1518 弄",
   },
 ];
-
 export default {
   name: "UserRight",
   components: {
