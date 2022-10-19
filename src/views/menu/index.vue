@@ -3,8 +3,8 @@
     <div class="menuItem-title">
       <div class="menuItem-title-left rui-theader-title">角色管理</div>
       <div class="menuItem-title-right">
-        <el-button type="primary" @click="handleAdd">新增</el-button>
-        <i class="el-icon-refresh-right ml" @click="handleRefresh"></i>
+        <el-button type="primary" @click="handleAdd" size="mini">新增</el-button>
+        <i class="el-icon-refresh-right ml" @click="handleRefresh" ></i>
       </div>
     </div>
     <el-table
@@ -26,7 +26,7 @@
       <el-table-column property="address3" label="操作">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" style="margin-right:20px" >编辑</el-button>
-          <el-popconfirm title="这是一段内容确定删除吗？"  >
+          <el-popconfirm title="确定删除吗？"  >
             <el-button
              slot="reference"
               size="mini"

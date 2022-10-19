@@ -26,8 +26,11 @@
       </el-input>
     </el-form-item>
     <el-form-item label="节点图标">
-      <el-select v-model="ruleForm.region22" placeholder="请选择活动区域">
-      </el-select>
+      <SelectedIcon
+        ref="icons"
+        @selected="selectedIcon"
+        v-model="ruleForm.iconname"
+      />
     </el-form-item>
     <el-form-item label="是否显示">
       <el-switch v-model="ruleForm.delivery"></el-switch>
@@ -39,10 +42,14 @@
   </el-form>
 </template>
 <script>
+import SelectedIcon from "../../components/iconSelect.vue";
 export default {
+  components: { SelectedIcon },
   data() {
     return {
-      ruleForm: {},
+      ruleForm: {
+        iconname:'',
+      },
       rules: {
         name: [
           { required: true, message: "请输入活动名称", trigger: "blur" },
@@ -73,6 +80,9 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    selectedIcon(iconname) {
+      this.ruleForm.iconname = iconname;
     },
   },
 };
