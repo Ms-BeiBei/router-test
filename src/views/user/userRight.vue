@@ -95,7 +95,10 @@
     >
       <el-table-column type="selection" width="55"> </el-table-column>
       <el-table-column label="头像" width="120">
-        <template slot-scope="scope">{{ scope.row.date }}</template>
+        <template slot-scope>
+          <div class="block">
+            <el-avatar :size="50" :src="circleUrl"></el-avatar></div
+        ></template>
       </el-table-column>
       <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
       <el-table-column prop="user" label="用户名"> </el-table-column>
@@ -119,9 +122,11 @@
       </el-table-column>
       <el-table-column prop="operate" label="操作" width="150" fixed="right">
         <template slot-scope>
-          <a style="margin-right: 5px" @click='handleEdit'>编辑</a>
-          <a style="margin-right: 5px" @click='handleChangePassword'>改密</a>
-          <a @click='handleDelete'>删除</a>
+          <a style="margin-right: 5px" @click="handleEdit">编辑</a>
+          <a style="margin-right: 5px" @click="handleChangePassword">改密</a>
+          <el-popconfirm title="这是一段内容确定删除吗？">
+            <a @click="handleDeleteRecord">删除</a>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
@@ -159,7 +164,7 @@
 </template>
 <script>
 import FullscreenModal from "@/components/FullscreenModal";
-import UserEdit from './userEdit'
+import UserEdit from "./userEdit";
 import UserAdd from "./userAdd";
 const tableData = [
   {
@@ -178,7 +183,7 @@ export default {
   components: {
     FullscreenModal,
     UserAdd,
-    UserEdit
+    UserEdit,
   },
   data() {
     return {
@@ -190,13 +195,13 @@ export default {
       visible: false,
       multipleSelection: [],
       typeTitle: undefined,
-      changePassword:'',
-      changePasswordForm:{},
+      changePassword: "",
+      changePasswordForm: {},
+      circleUrl:
+        "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
     };
   },
-  created() {
-    
-  },
+  created() {},
   computed: {
     disabled() {
       return this.multipleSelection.length === 0;
@@ -224,11 +229,11 @@ export default {
       this.multipleSelection = val;
       console.log(this.multipleSelection, "this.multipleSelection");
     },
-    handleEdit(){
+    handleEdit() {
       this.typeTitle = "C";
       this.visible = true;
     },
-    handleChangePassword(){
+    handleChangePassword() {
       this.typeTitle = "D";
       this.visible = true;
     },
@@ -243,6 +248,7 @@ export default {
       this.typeTitle = "A";
       this.visible = true;
     },
+    handleDeleteRecord() {},
     handleDelete() {
       this.$alert("确定要删除所选的用户吗?", "", {
         confirmButtonText: "确定",

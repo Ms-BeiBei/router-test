@@ -49,8 +49,11 @@
           <a-button type="primary" @click="handleAdd" size="middle">
             新增
           </a-button>
-          <a-icon type="reload" @click="handleRefrsh" />
-        </div>
+          <a-button  type="reload" @click="handleRefrsh" size="middle">
+           刷新
+          </a-button>
+           <SetupColumn  />       
+        </div> 
       </div>
       <a-table
         :columns="columns"
@@ -146,11 +149,13 @@ const data = [
 ];
 import userRoleAdd from "./userRoleAdd.vue";
 import userRoleEdit from "./userRoleEdit.vue";
+import SetupColumn from '@/components/setUpColounm.vue'
 export default {
   name: "User",
   components: {
     userRoleAdd,
     userRoleEdit,
+    SetupColumn,
   },
   data() {
     return {
@@ -213,7 +218,7 @@ export default {
     margin: 10px;
     border-radius: 10px;
     &--sty {
-      margin: 80px;
+      margin: 60px;
     }
   }
   &-bottom {
