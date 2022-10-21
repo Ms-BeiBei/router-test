@@ -1,170 +1,51 @@
 <template>
-  <div class="user_container">
-    <div class="user_container-top">
-      <a-form :form="form" :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }">
-        <a-row class="user_container-top--sty">
-          <a-col :span="6">
-            <a-form-item label="名称">
-              <a-input
-                v-decorator="[
-                  'note',
-                  {
-                    rules: [{ required: true, message: '请输入名称!' }],
-                  },
-                ]"
-                placeholder="请输入名称"
-              />
-            </a-form-item>
-          </a-col>
-          <a-col :span="6">
-            <a-form-item label="标识">
-              <a-input v-decorator="['note11']" placeholder="请输入标识" />
-            </a-form-item>
-          </a-col>
-          <a-col :span="6">
-            <a-form-item label="备注">
-              <a-input v-decorator="['note22']" placeholder="请输入备注" />
-            </a-form-item>
-          </a-col>
-          <a-col :span="6" align="right">
-            <a-button
-              type="primary"
-              icon="search"
-              style="margin-right: 10px"
-              @click="handleSearch"
-            >
-              查询</a-button
-            >
-            <a-button style="margin-left: 8px" icon="redo" @click="handeReset">
-              重置</a-button
-            >
-          </a-col>
-        </a-row>
-      </a-form>
-    </div>
-    <div class="user_container-bottom">
-      <div class="user_container-bottom--sty">
-        <div class="rui-theader-title">角色管理</div>
-        <div class="rui-theader-btns">
-          <a-button type="primary" @click="handleAdd" size="middle">
-            新增
-          </a-button>
-          <a-button  type="reload" @click="handleRefrsh" size="middle">
-           刷新
-          </a-button>
-           <SetupColumn  />       
-        </div> 
-      </div>
-      <a-table
-        :columns="columns"
-        :data-source="data"
-        :pagination="{ pageSize: 50 }"
-        :scroll="{ y: 240 }"
-      >
-        <span slot="action" slot-scope>
-          <a style="margin-right: 10px" @click="handleUpdate">编辑</a>
-          <a-popconfirm
-            title="确定删除吗"
-            ok-text="确定"
-            cancel-text="取消"
-            @confirm="confirmDelete"
-          >
-            <a @click="handlDelete">删除</a>
-          </a-popconfirm>
-        </span>
-      </a-table>
-    </div>
-    <a-modal
-      :title="title"
-      :visible="visible"
-      :footer="null"
-       width="1200px"
-      :closable="true"
-      :wrapClassName="fullscreen ? 'user-modal--fullscreen' : ''"
-    >
-      <template slot="closeIcon" slot-scope>
-        <a-icon type="shrink" @click="toggleFullscreen" v-if="fullscreen" />
-        <a-icon type="arrows-alt" @click="toggleFullscreen" v-else />
-      </template>
-      <userRoleAdd
-        @confirm="handleOk"
-        @cancel="handleCancel"
-        v-if="type === 'add'"
-      />
-      <userRoleEdit
-        @confirm="handleOk"
-        @cancel="handleCancel"
-        v-if="type === 'edit'"
-      />
-    </a-modal>
-  </div>
+    <ZCrud pageTitle="角色管理" :columns="columns" :data='data'/>
 </template>
 <script>
-const columns = [
-  {
-    title: "序号",
-    dataIndex: "name",
-    width: 150,
-  },
-  {
-    title: "名称",
-    dataIndex: "age",
-    width: 150,
-  },
-  {
-    title: "标识",
-    dataIndex: "address1",
-  },
-  {
-    title: "备注",
-    dataIndex: "address2",
-  },
-  {
-    title: "创建时间",
-    dataIndex: "address3",
-  },
-  {
-    title: "更新时间",
-    dataIndex: "addr4ss",
-  },
-  {
-    title: "操作",
-    dataIndex: "addres3s",
-    scopedSlots: { customRender: "action" },
-  },
-];
 const data = [
   {
     key: "1",
-    name: "John Brown",
-    age: 32,
+    a: "John Brown",
+    b: 32,
     address: "New York Park",
   },
   {
     key: "2",
-    name: "Jim Green",
-    age: 40,
+    a: "Jim Green",
+    b: 40,
     address: "London Park",
   },
 ];
 import userRoleAdd from "./userRoleAdd.vue";
 import userRoleEdit from "./userRoleEdit.vue";
 import SetupColumn from '@/components/setUpColounm.vue'
+import ZCrud from '@/components/z-crud/src/index'
 export default {
   name: "User",
   components: {
     userRoleAdd,
     userRoleEdit,
     SetupColumn,
+    ZCrud
   },
   data() {
     return {
       form: this.$form.createForm(this, { name: "coordinated" }),
       visible: false,
       data,
-      columns,
       fullscreen: false,
       type: undefined,
+      data,
+      columns:[
+        {
+          label:'测试1',
+          prop:'a'
+        },
+        {
+          label:'测试2',
+          prop:'b'
+        },
+      ]
     };
   },
   created() {},
