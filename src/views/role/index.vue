@@ -4,13 +4,13 @@
 <script>
 const data = [
   {
-    key: "1",
+    id: "1",
     a: "John Brown",
     b: 32,
     address: "New York Park",
   },
   {
-    key: "2",
+    id: "2",
     a: "Jim Green",
     b: 40,
     address: "London Park",

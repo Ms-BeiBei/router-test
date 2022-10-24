@@ -12,16 +12,30 @@
       <el-button type="text" @click="handleRefresh">重置</el-button>
     </div>
     <div class="z-setting__content">
-      <ColumnNode v-for="item in columns" :key="item.key" :item="item" />
+      <VueDraggeable v-model="columns" >
+        <transition-group>
+          <!-- <div  v-for="item in columns"
+            :key="item"
+            :item="item">
+            {{item.label}}
+          </div> -->
+          <ColumnNode
+            v-for="(item,index) in columns"
+             :key="index"
+            :item="item"
+          />
+        </transition-group>
+      </VueDraggeable>
     </div>
     <i class="el-icon-setting" slot="reference"></i>
   </el-popover>
 </template>
 <script>
 import ColumnNode from "../../../components/z-crud/src/columnNode.vue";
+import VueDraggeable from "vuedraggable";
 export default {
   name: "ZSetting",
-  components: { ColumnNode },
+  components: { ColumnNode,VueDraggeable },
   props: {
     columns: {
       type: Array,
@@ -52,10 +66,9 @@ export default {
   methods: {
     handleRefresh() {
       this.$emit("refresh");
-      // this.itemVisible = true;
-      // this.serialColumnVisible=true
       Object.assign(this.$data, this.$options.data());
     },
+    
   },
 };
 </script>
@@ -75,4 +88,7 @@ export default {
     align-items: center;
   }
 }
+</style>
+<style>
+
 </style>

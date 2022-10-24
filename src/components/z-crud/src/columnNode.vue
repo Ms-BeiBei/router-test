@@ -1,7 +1,7 @@
 <template>
   <div class="columnNode">
     <div class="columnNode-left">
-      <i class="el-icon-rank"></i>
+      <i class="el-icon-rank" @click="handleDrogg"></i>
       <el-checkbox v-model="item.visible">{{ item.label }}</el-checkbox>
     </div>
     <div class="columnNode-right">
@@ -21,7 +21,7 @@ export default {
     },
   },
   data() {
-    return {};
+    return {}; 
   },
   created() {},
   methods: {
@@ -31,6 +31,9 @@ export default {
     handleFixedRight() {
       this.$set(this.item, "fixed", "right");
     },
+    handleDrogg(){
+      this.$emit('dragend')
+    }
   },
 };
 </script>s
