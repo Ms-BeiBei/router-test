@@ -14,11 +14,6 @@
     <div class="z-setting__content">
       <VueDraggeable v-model="columns" >
         <transition-group>
-          <!-- <div  v-for="item in columns"
-            :key="item"
-            :item="item">
-            {{item.label}}
-          </div> -->
           <ColumnNode
             v-for="(item,index) in columns"
              :key="index"
@@ -31,7 +26,7 @@
   </el-popover>
 </template>
 <script>
-import ColumnNode from "../../../components/z-crud/src/columnNode.vue";
+import ColumnNode from "./columnNode.vue";
 import VueDraggeable from "vuedraggable";
 export default {
   name: "ZSetting",

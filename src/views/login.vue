@@ -68,7 +68,7 @@
   </div>
 </template>
 <script>
-import axios from "@/http/axios";
+import commservice from "../../src/api/request";
 import { Encrypt, setToken } from "@/utils";
 import { message } from "ant-design-vue";
 export default {
@@ -91,8 +91,8 @@ export default {
   },
   methods: {
     async handleSubmit() {
-       setToken('hjofhewqiHDNBBBBBBBBBBBBBB');
-         this.$router.push("/");
+      setToken("hjofhewqiHDNBBBBBBBBBBBBBB");
+      this.$router.push("/");
       // try {
       //   this.loading = true;
       //   const data = {
@@ -116,16 +116,25 @@ export default {
       // }
     },
     async getVerifyCode() {
+      // try {
+      //   const response = await axios({
+      //     method: "get",
+      //     url: "/admin/captcha/img",
+      //   });
+      //   if (response) {
+      //     this.base64 = response.data.data.img;
+      //     this.captchaId = response.data.data.id;
+      //   }
+      // } catch (err) {
+      // } finally {
+      // }
       try {
-        const response = await axios({
-          method: "get",
-          url: "/admin/captcha/img",
+        const response = await commservice.getImageUrl().then((res) => {
+          if (res) {
+            this.base64 = response.data.data.img;
+            this.captchaId = response.data.data.id;
+          }
         });
-        if (response) {
-          this.base64 = response.data.data.img;
-          this.captchaId = response.data.data.id;
-        }
-      } catch (err) {
       } finally {
       }
     },

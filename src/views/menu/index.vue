@@ -12,6 +12,7 @@
       style="width: 100%; margin-bottom: 20px"
       row-key="id"
       border
+      :row-style="enter"
       default-expand-all
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
     >
@@ -120,6 +121,11 @@ export default {
     handleEdit() {
       this.titleType = "B";
       this.visible = true;
+    },
+    enter(data){
+      if(data){
+        return {'cursor':'pointer'}
+      }
     },
     handleDelete() {},
     handleCancel() {
