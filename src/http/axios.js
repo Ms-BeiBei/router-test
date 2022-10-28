@@ -9,7 +9,7 @@ let axiosIns = axios.create({
 axiosIns.interceptors.request.use((configer) => {
     //在这里处理request，可以对所有请求统一处理请求头
     configer.headers.common['token'] = localStorage.getItem('token')
-    // configer.params = { aa: 111 }
+    console.log(localStorage.getItem('token'),888)
     return configer
 })
 

@@ -38,7 +38,7 @@
       </el-table-column>
     </el-table>
     <Fullscreen
-      :visible.sync="visible"
+      :visible.sync="visible" 
       :title="title"
       width="1000px"
       @ok="handleCancel"

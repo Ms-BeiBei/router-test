@@ -4,7 +4,7 @@ const commservice = {
     loginIn(params) {
         return axios.postJson(params, api.loginIn)
     },
-    getImageUrl(){
+    getImageUrl(params){
         return axios.get(params, api.loginIn)
 
     },

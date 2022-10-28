@@ -5,6 +5,8 @@
 
 import notification from 'ant-design-vue/es/notification';
 import qs from 'qs';
+import axios from 'axios'
+
 
 //封装postForm
 function postForm(parameter, path, headParam) {
