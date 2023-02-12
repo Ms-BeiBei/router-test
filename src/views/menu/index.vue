@@ -1,7 +1,7 @@
 <template>
   <div class="menuItem">
     <div class="menuItem-title">
-      <div class="menuItem-title-left rui-theader-title">角色管理</div>
+      <div class="menuItem-title-left rui-theader-title">角色管理 {{ $store.state.system.a }}</div>
       <div class="menuItem-title-right">
         <el-button type="primary" @click="handleAdd" size="mini">新增</el-button>
         <i class="el-icon-refresh-right ml" @click="handleRefresh" ></i>
@@ -49,16 +49,18 @@
         <Menu-edit v-if="titleType === 'B'" />
       </template>
     </Fullscreen>
-  </div>
+    <jsx />
+   </div>
 </template>
 
 <script>
 import Fullscreen from "@/components/FullscreenModal.vue";
+import jsx from '@/components/jsx.vue'
 import MenuAdd from "./MenuAdd.vue";
 import MenuEdit from "./MenuEdit.vue";
 export default {
   name: "menuItem",
-  components: { Fullscreen, MenuAdd, MenuEdit },
+  components: { Fullscreen, MenuAdd, MenuEdit,jsx },
   data() {
     return {
       formInline: {},
@@ -115,6 +117,7 @@ export default {
       if (this.titleType === "B") {
         return "编辑";
       }
+      return null
     },
   },
   methods: {

@@ -1,7 +1,7 @@
 import { getToken } from "@/utils";
 import router from './index'
-router.beforeEach((to, from, next) => {
-
+router.beforeEach((to, from, next) => {           
+       console.log(to,900900)
     if (getToken()) {
         if (to.path === '/login') {
             next('/')
@@ -20,3 +20,4 @@ router.beforeEach((to, from, next) => {
 //如果token不存在，说明此时是没有登录状态，或者tk过期状态，会跳转到 （‘./login’）,当目标路由为login时，会继续执行，否则会进入死循环。
 //点击退出按钮是清除token，路由跳转到登陆页    removeToken("token");
                                            //this.$router.push("/login");
+//

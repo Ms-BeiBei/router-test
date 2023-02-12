@@ -60,6 +60,15 @@ export const routes = [
         },
         children:[]
       },
+      {
+        path: 'pic',
+        name: 'pic',
+        component: () => import('@/views/new-pic/layout.vue'),
+        meta: {
+          title: '烟叶公司画像预警'
+        },
+        children:[]
+      },
     ]
   },
   // {

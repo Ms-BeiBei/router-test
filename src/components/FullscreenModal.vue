@@ -4,8 +4,7 @@
     :closable="true"
     v-on="$listeners"
     v-bind="$attrs"
-    cancelText='取消'
-    okText='确定'
+    cancelText='返回'
     :wrapClassName="fullscreen ? 'user-modal--fullscreen' : ''"
   >
     <template v-slot:closeIcon>
@@ -49,6 +48,9 @@ export default {
     toggleFullscreen() {
       this.fullscreen = !this.fullscreen;
     },
+    handleCancel(){
+      this.visible=false
+    }
   },
 };
 </script>

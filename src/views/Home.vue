@@ -1,5 +1,6 @@
 <template>
   <div class="home">   
+    {{ $store.state.system.a }}
 </div>
 </template>
 

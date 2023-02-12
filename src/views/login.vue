@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      setToken("hjofhewqiHDNBBBBBBBBBBBBBB");
+       setToken("hjofhewqiHDNBBBBBBBBBBBBBB");
       this.$router.push("/");
       // try {
       //   this.loading = true;
