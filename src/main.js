@@ -12,9 +12,7 @@ Vue.use(ElementUI);
 Vue.use(Antd)
 Vue.config.productionTip = false
 
-store.dispatch("add") //一般在组件中写，this.$store 调用
 
-console.log(store, 111)
 
 new Vue({
   router,
