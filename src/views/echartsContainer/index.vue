@@ -121,7 +121,7 @@
               if (index < 6) {
                 result.list.push({
                   value: total || 0,
-                  name: index === 5 && list.length > 6 ? "其它烟站" : name,
+                  name: index === 5 && list.length > 6 ? "其它站" : name,
                   // 自定义颜色 与  右侧 颜色统一
                   itemStyle: {
                     color: color[index],

@@ -1,12 +1,12 @@
 <template>
   <div class="progressOrder">
-    <span class="rui-theader-title">烟叶订单进度</span>
+    <span class="rui-theader-title">111</span>
     <div class="progressOrder-step">
       <a-steps :current="2">
         <a-step title="计划">
           <span slot="description">
             <div>
-              <span class="progressOrder-rui-title">内管工作量</span>
+              <span class="progressOrder-rui-title">222</span>
             </div>
           </span>
         </a-step>

@@ -65,7 +65,7 @@ export const routes = [
         name: 'pic',
         component: () => import('@/views/new-pic/layout.vue'),
         meta: {
-          title: '烟叶公司画像预警'
+          title: '222'
         },
         children:[]
       },

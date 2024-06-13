@@ -22,7 +22,7 @@ export default {
         echarts.registerMap("CQ", geoDr.data);
         myChart.setOption({
           title: {
-            text: "烟草公司区域图",
+            text: "哈哈哈",
           },
           geo: [
             {

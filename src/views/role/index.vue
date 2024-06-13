@@ -1,5 +1,6 @@
 <template>
-    <ZCrud pageTitle="角色管理" :columns="columns" :data='data'/>
+    <ZCrud pageTitle="角色管理11" :columns="columns" :data='data'/>
+    
 </template>
 <script>
 const data = [

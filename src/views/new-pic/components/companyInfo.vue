@@ -1,10 +1,11 @@
+
 <template>
   <div class="company-info">
-    <span class="rui-theader-title company-info-title">烟叶公司信息</span>
+    <span class="rui-theader-title company-info-title">信息</span>
     <a-form layout="inline">
       <a-row :gutter="[0, 60]">
         <a-col :span="8">
-          <a-form-item label="烟农总数" name="username">
+          <a-form-item label="总数" name="username">
             {{ 1 }}
           </a-form-item>
         </a-col>
@@ -14,7 +15,7 @@
           </a-form-item>
         </a-col>
         <a-col :span="8">
-          <a-form-item label="烟技员数" name="username">
+          <a-form-item label="员数" name="username">
             {{ 1 }}
           </a-form-item>
         </a-col>
@@ -29,7 +30,7 @@
           </a-form-item>
         </a-col>
         <a-col :span="8">
-          <a-form-item label="烟叶育苗数" name="username">
+          <a-form-item label="育苗数" name="username">
             {{ 1 }}
           </a-form-item>
         </a-col>
@@ -65,11 +66,11 @@ export default {
       type: Object,
       default: () => {},
     },
-  },
+  },       
   data() {
-    return {};
+    return {};    
   },
-  methods: {},
+  methods: {},       
 };
 </script>
 <style lang="less" scoped>
